@@ -1,0 +1,24 @@
+_id: req_wrk_a199292639e84c6f939c8f19060562ad420fb7c2
+authentication: {}
+body: {}
+created: 1596442496861
+description: ""
+headers:
+  - disabled: false
+    name: X-API-KEY
+    value: "{{ xApiKey }}"
+isPrivate: false
+metaSortKey: -1596442496861
+method: POST
+modified: 1596442496861
+name: Downloads the given video from YouTube.
+parameters: []
+parentId: fld_wrk_a199292639e84c6f939c8f19060562add033e22a
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingFollowRedirects: global
+settingRebuildPath: true
+settingSendCookies: true
+settingStoreCookies: true
+type: Request
+url: "{{ base_url }}/yt/dl/{{ videoId }}"

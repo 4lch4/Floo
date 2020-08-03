@@ -1,0 +1,10 @@
+_id: fld_wrk_a199292639e84c6f939c8f19060562add033e22a
+created: 1596442496891
+description: Endpoints that can only be executed by an admin of the Floo API.
+environment: {}
+environmentPropertyOrder: null
+metaSortKey: -1596442496891
+modified: 1596442496891
+name: admin
+parentId: wrk_a199292639e84c6f939c8f19060562ad
+type: RequestGroup

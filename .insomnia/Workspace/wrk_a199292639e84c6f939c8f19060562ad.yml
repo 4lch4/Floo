@@ -1,0 +1,11 @@
+_id: wrk_a199292639e84c6f939c8f19060562ad
+created: 1596442496776
+description: |
+  My front-end API for all things internet related. I have a feeling
+  it might get unwieldy at some point and need to be split into smaller APIs
+  down the road.
+modified: 1596442496921
+name: Floo 1.0.0
+parentId: null
+scope: null
+type: Workspace

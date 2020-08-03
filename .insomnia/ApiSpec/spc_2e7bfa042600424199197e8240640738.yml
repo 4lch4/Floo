@@ -1,0 +1,591 @@
+_id: spc_2e7bfa042600424199197e8240640738
+contentType: yaml
+contents: "openapi: 3.0.0\r
+
+  info:\r
+
+  \  description: |\r
+
+  \    My front-end API for all things internet related. I have a feeling\r
+
+  \    it might get unwieldy at some point and need to be split into smaller
+  APIs\r
+
+  \    down the road.\r
+
+  \  version: '1.0.0'\r
+
+  \  title: Floo\r
+
+  \  contact:\r
+
+  \    email: floo@4lch4.dev\r
+
+  \  license:\r
+
+  \    name: BSD-2-Clause\r
+
+  \    url: 'https://opensource.org/licenses/BSD-2-Clause'\r
+
+  servers:\r
+
+  # Added by API Auto Mocking Plugin\r
+
+  \  - description: SwaggerHub API Auto Mocking\r
+
+  \    url: https://virtserver.swaggerhub.com/Alcha/Floo/1.0.0\r
+
+  \  - url: 'https://floo.4lch4.dev'\r
+
+  \    description: 'The production version of the Floo API.'\r
+
+  \  - url: 'http://localhost:8080'\r
+
+  \    description: 'The local test version of the Floo API.'\r
+
+  tags:\r
+
+  \  - name: admin\r
+
+  \    description: 'Endpoints that can only be executed by an admin of the
+  Floo API.'\r
+
+  \  - name: pet\r
+
+  \    description: Everything about your Pets\r
+
+  \    externalDocs:\r
+
+  \      description: Find out more\r
+
+  \      url: 'http://swagger.io'\r
+
+  \  - name: store\r
+
+  \    description: Access to Petstore orders\r
+
+  \  - name: user\r
+
+  \    description: Operations about user\r
+
+  \    externalDocs:\r
+
+  \      description: Find out more about our store\r
+
+  \      url: 'http://swagger.io'\r
+
+  paths:\r
+
+  \  /yt/dl/{videoId}:\r
+
+  \    post:\r
+
+  \      tags:\r
+
+  \        - admin\r
+
+  \      summary: 'Downloads the given video from YouTube.'\r
+
+  \      operationId: downloadVideo\r
+
+  \      parameters:\r
+
+  \        - name: videoId\r
+
+  \          description: The id of the video to download from YouTube.\r
+
+  \          required: true\r
+
+  \          in: path\r
+
+  \          schema:\r
+
+  \            type: string\r
+
+  \      responses:\r
+
+  \        '200':\r
+
+  \          description: The video has begun downloading successfully.\r
+
+  \        '405':\r
+
+  \          description: 'The video id provided is not valid.'\r
+
+  \        '401':\r
+
+  \          $ref: '#/components/responses/UnauthorizedRequest'\r
+
+  \  /user:\r
+
+  \    post:\r
+
+  \      tags:\r
+
+  \        - user\r
+
+  \      summary: Create user\r
+
+  \      description: This can only be done by the logged in user.\r
+
+  \      operationId: createUser\r
+
+  \      responses:\r
+
+  \        default:\r
+
+  \          description: successful operation\r
+
+  \      requestBody:\r
+
+  \        content:\r
+
+  \          application/json:\r
+
+  \            schema:\r
+
+  \              $ref: '#/components/schemas/User'\r
+
+  \        description: Created user object\r
+
+  \        required: true\r
+
+  \  /user/createWithArray:\r
+
+  \    post:\r
+
+  \      tags:\r
+
+  \        - user\r
+
+  \      summary: Creates list of users with given input array\r
+
+  \      operationId: createUsersWithArrayInput\r
+
+  \      responses:\r
+
+  \        default:\r
+
+  \          description: successful operation\r
+
+  \      requestBody:\r
+
+  \        $ref: '#/components/requestBodies/UserArray'\r
+
+  \  /user/createWithList:\r
+
+  \    post:\r
+
+  \      tags:\r
+
+  \        - user\r
+
+  \      summary: Creates list of users with given input array\r
+
+  \      operationId: createUsersWithListInput\r
+
+  \      responses:\r
+
+  \        default:\r
+
+  \          description: successful operation\r
+
+  \      requestBody:\r
+
+  \        $ref: '#/components/requestBodies/UserArray'\r
+
+  \  /user/login:\r
+
+  \    get:\r
+
+  \      tags:\r
+
+  \        - user\r
+
+  \      summary: Logs user into the system\r
+
+  \      operationId: loginUser\r
+
+  \      parameters:\r
+
+  \        - name: username\r
+
+  \          in: query\r
+
+  \          description: The user name for login\r
+
+  \          required: true\r
+
+  \          schema:\r
+
+  \            type: string\r
+
+  \        - name: password\r
+
+  \          in: query\r
+
+  \          description: The password for login in clear text\r
+
+  \          required: true\r
+
+  \          schema:\r
+
+  \            type: string\r
+
+  \      responses:\r
+
+  \        '200':\r
+
+  \          description: successful operation\r
+
+  \          headers:\r
+
+  \            X-Rate-Limit:\r
+
+  \              description: calls per hour allowed by the user\r
+
+  \              schema:\r
+
+  \                type: integer\r
+
+  \                format: int32\r
+
+  \            X-Expires-After:\r
+
+  \              description: date in UTC when token expires\r
+
+  \              schema:\r
+
+  \                type: string\r
+
+  \                format: date-time\r
+
+  \          content:\r
+
+  \            application/json:\r
+
+  \              schema:\r
+
+  \                type: string\r
+
+  \            application/xml:\r
+
+  \              schema:\r
+
+  \                type: string\r
+
+  \        '400':\r
+
+  \          description: Invalid username/password supplied\r
+
+  \  /user/logout:\r
+
+  \    get:\r
+
+  \      tags:\r
+
+  \        - user\r
+
+  \      summary: Logs out current logged in user session\r
+
+  \      operationId: logoutUser\r
+
+  \      responses:\r
+
+  \        default:\r
+
+  \          description: successful operation\r
+
+  \  '/user/{username}':\r
+
+  \    get:\r
+
+  \      tags:\r
+
+  \        - user\r
+
+  \      summary: Get user by user name\r
+
+  \      operationId: getUserByName\r
+
+  \      parameters:\r
+
+  \        - name: username\r
+
+  \          in: path\r
+
+  \          description: The name that needs to be fetched. Use user1 for
+  testing.\r
+
+  \          required: true\r
+
+  \          schema:\r
+
+  \            type: string\r
+
+  \      responses:\r
+
+  \        '200':\r
+
+  \          description: successful operation\r
+
+  \          content:\r
+
+  \            application/json:\r
+
+  \              schema:\r
+
+  \                $ref: '#/components/schemas/User'\r
+
+  \            application/xml:\r
+
+  \              schema:\r
+
+  \                $ref: '#/components/schemas/User'\r
+
+  \        '400':\r
+
+  \          description: Invalid username supplied\r
+
+  \        '404':\r
+
+  \          description: User not found\r
+
+  \    put:\r
+
+  \      tags:\r
+
+  \        - user\r
+
+  \      summary: Updated user\r
+
+  \      description: This can only be done by the logged in user.\r
+
+  \      operationId: updateUser\r
+
+  \      parameters:\r
+
+  \        - name: username\r
+
+  \          in: path\r
+
+  \          description: name that need to be updated\r
+
+  \          required: true\r
+
+  \          schema:\r
+
+  \            type: string\r
+
+  \      responses:\r
+
+  \        '400':\r
+
+  \          description: Invalid user supplied\r
+
+  \        '404':\r
+
+  \          description: User not found\r
+
+  \      requestBody:\r
+
+  \        content:\r
+
+  \          application/json:\r
+
+  \            schema:\r
+
+  \              $ref: '#/components/schemas/User'\r
+
+  \        description: Updated user object\r
+
+  \        required: true\r
+
+  \    delete:\r
+
+  \      tags:\r
+
+  \        - user\r
+
+  \      summary: Delete user\r
+
+  \      description: This can only be done by the logged in user.\r
+
+  \      operationId: deleteUser\r
+
+  \      parameters:\r
+
+  \        - name: username\r
+
+  \          in: path\r
+
+  \          description: The name that needs to be deleted\r
+
+  \          required: true\r
+
+  \          schema:\r
+
+  \            type: string\r
+
+  \      responses:\r
+
+  \        '400':\r
+
+  \          description: Invalid username supplied\r
+
+  \        '404':\r
+
+  \          description: User not found\r
+
+  externalDocs:\r
+
+  \  description: Find out more about Floo.\r
+
+  \  url: 'https://github.com/4lch4/Floo'\r
+
+  security:\r
+
+  \  - FlooAuth: []\r
+
+  components:\r
+
+  \  schemas:\r
+
+  \    User:\r
+
+  \      type: object\r
+
+  \      properties:\r
+
+  \        id:\r
+
+  \          type: integer\r
+
+  \          format: int64\r
+
+  \        username:\r
+
+  \          type: string\r
+
+  \        firstName:\r
+
+  \          type: string\r
+
+  \        lastName:\r
+
+  \          type: string\r
+
+  \        email:\r
+
+  \          type: string\r
+
+  \        password:\r
+
+  \          type: string\r
+
+  \        phone:\r
+
+  \          type: string\r
+
+  \        userStatus:\r
+
+  \          type: integer\r
+
+  \          format: int32\r
+
+  \          description: User Status\r
+
+  \      xml:\r
+
+  \        name: User\r
+
+  \    Tag:\r
+
+  \      type: object\r
+
+  \      properties:\r
+
+  \        id:\r
+
+  \          type: integer\r
+
+  \          format: int64\r
+
+  \        name:\r
+
+  \          type: string\r
+
+  \      xml:\r
+
+  \        name: Tag\r
+
+  \    ApiResponse:\r
+
+  \      type: object\r
+
+  \      properties:\r
+
+  \        code:\r
+
+  \          type: integer\r
+
+  \          format: int32\r
+
+  \        type:\r
+
+  \          type: string\r
+
+  \        message:\r
+
+  \          type: string\r
+
+  \  requestBodies:\r
+
+  \    UserArray:\r
+
+  \      content:\r
+
+  \        application/json:\r
+
+  \          schema:\r
+
+  \            type: array\r
+
+  \            items:\r
+
+  \              $ref: '#/components/schemas/User'\r
+
+  \      description: List of user object\r
+
+  \      required: true\r
+
+  \  responses:\r
+
+  \    UnauthorizedRequest:\r
+
+  \      description: 'The API key is missing or invalid.'\r
+
+  \      headers:\r
+
+  \        WWW_Authenticate:\r
+
+  \          schema:\r
+
+  \            type: string\r
+
+  \  securitySchemes:\r
+
+  \    FlooAuth:\r
+
+  \      type: apiKey\r
+
+  \      description: 'The primary authentication method for Floo.'\r
+
+  \      in: header\r
+
+  \      name: X-API-KEY"
+created: 1596442496777
+fileName: Imported Workspace
+modified: 1596442496930
+parentId: wrk_a199292639e84c6f939c8f19060562ad
+type: ApiSpec

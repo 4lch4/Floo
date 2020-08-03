@@ -1,0 +1,40 @@
+_id: req_wrk_a199292639e84c6f939c8f19060562ad4cb83333
+authentication: {}
+body:
+  mimeType: application/json
+  text: |-
+    [
+      {
+        "id": 0,
+        "username": "string",
+        "firstName": "string",
+        "lastName": "string",
+        "email": "string",
+        "password": "string",
+        "phone": "string",
+        "userStatus": 0
+      }
+    ]
+created: 1596442496847
+description: ""
+headers:
+  - disabled: false
+    name: X-API-KEY
+    value: "{{ xApiKey }}"
+  - name: Content-Type
+    value: application/json
+isPrivate: false
+metaSortKey: -1596442496847
+method: POST
+modified: 1596442496847
+name: Creates list of users with given input array
+parameters: []
+parentId: fld_wrk_a199292639e84c6f939c8f19060562ad12dea96f
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingFollowRedirects: global
+settingRebuildPath: true
+settingSendCookies: true
+settingStoreCookies: true
+type: Request
+url: "{{ base_url }}/user/createWithArray"

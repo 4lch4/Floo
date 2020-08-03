@@ -1,0 +1,24 @@
+_id: req_wrk_a199292639e84c6f939c8f19060562ad38e8e88f
+authentication: {}
+body: {}
+created: 1596442496792
+description: ""
+headers:
+  - disabled: false
+    name: X-API-KEY
+    value: "{{ xApiKey }}"
+isPrivate: false
+metaSortKey: -1596442496792
+method: DELETE
+modified: 1596442496792
+name: Delete user
+parameters: []
+parentId: fld_wrk_a199292639e84c6f939c8f19060562ad12dea96f
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingFollowRedirects: global
+settingRebuildPath: true
+settingSendCookies: true
+settingStoreCookies: true
+type: Request
+url: "{{ base_url }}/user/{{ username }}"

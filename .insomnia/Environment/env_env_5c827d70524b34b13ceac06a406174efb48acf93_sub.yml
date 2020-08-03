@@ -1,0 +1,15 @@
+_id: env_env_5c827d70524b34b13ceac06a406174efb48acf93_sub
+color: null
+created: 1596442496904
+data:
+  base_path: /Alcha/Floo/1.0.0
+  host: virtserver.swaggerhub.com
+  scheme: https
+  xApiKey: xApiKey
+dataPropertyOrder: null
+isPrivate: false
+metaSortKey: 1596442496904
+modified: 1596442496904
+name: OpenAPI env
+parentId: env_5c827d70524b34b13ceac06a406174efb48acf93
+type: Environment

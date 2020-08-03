@@ -1,0 +1,30 @@
+_id: req_wrk_a199292639e84c6f939c8f19060562ad00ac9da2
+authentication: {}
+body: {}
+created: 1596442496833
+description: ""
+headers:
+  - disabled: false
+    name: X-API-KEY
+    value: "{{ xApiKey }}"
+isPrivate: false
+metaSortKey: -1596442496833
+method: GET
+modified: 1596442496833
+name: Logs user into the system
+parameters:
+  - disabled: false
+    name: username
+    value: string
+  - disabled: false
+    name: password
+    value: string
+parentId: fld_wrk_a199292639e84c6f939c8f19060562ad12dea96f
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingFollowRedirects: global
+settingRebuildPath: true
+settingSendCookies: true
+settingStoreCookies: true
+type: Request
+url: "{{ base_url }}/user/login"
