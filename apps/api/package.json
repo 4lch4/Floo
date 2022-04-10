@@ -14,11 +14,6 @@
   },
   "scripts": {
     "start": "node dist/index.js",
-    "m:build": "make build",
-    "m:start": "make start",
-    "m:stop": "make stop",
-    "m:rebuild": "make rebuild",
-    "m:logs": "make logs",
     "package": "tsc",
     "build:watch": "tsc --watch"
   },
