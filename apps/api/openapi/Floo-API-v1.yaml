@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: Floo-API-v1
+  version: '1.0'
+  summary: An API that serves as a middle-man for sending notifications to various channels/endpoints.
+  description: |-
+    An API that serves as a middle-man for sending notifications to various services, channels, or endpoints, such as Webhooks, E-Mail, SMS, etc. It provides endpoints to achieve the following:
+
+    - CRUD operations on service/channel/endpoint configurations.
+    - Retrieve meta data regarding how Floo is operating.
+    - Endpoints to send content to your configured services, channeels, and/or endpoints.
+  contact:
+    name: Devin W. Leaman (4lch4)
+    url: 'https://4lch4.social'
+    email: floo@4lch4.email
+  license:
+    name: MIT
+    identifier: MIT
+servers:
+  - url: 'http://localhost:8080'
+    description: Local Deployment
+  - url: 'https://test.floo.cloud'
+    description: Test Deployment
+  - url: 'https://floo.cloud'
+    description: Production Deployment
+paths:
+  /meta/history:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: getOperationHistory
+      description: Retrieve an array/list of historical messages that have been sent through Floo.
+  /meta/services:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: getServices
+      description: Retrieve an array/list of services that have been configured.
+  '/send/{sourceService}/{destinationService}':
+    parameters:
+      - schema:
+          type: string
+        name: sourceService
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: destinationService
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: sendMessageToService
+      responses:
+        '200':
+          description: OK
+      description: The primary endpoint for sending messages to a configured service. The serviceName parameter is the name chosen for the service configuration when creating or editing a config.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      examples:
+        - id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: '1997-10-31'
+          emailVerified: true
+          signUpDate: '2019-08-24'
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        dateOfBirth:
+          type: string
+          format: date
+          example: '1997-10-31'
+        emailVerified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - emailVerified
+  securitySchemes:
+    API-Key-Query:
+      name: apiKey
+      type: apiKey
+      in: query
+      description: A randomly generated string used to authenticate your requests.
+    API-Key-Header:
+      name: apiKey
+      type: apiKey
+      in: header
+      description: A randomly generated string used to authenticate your requests.
+security:
+  - API Key - Query: []
+  - API-Key-Header: []
